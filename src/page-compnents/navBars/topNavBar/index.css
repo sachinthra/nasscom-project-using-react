@@ -23,6 +23,7 @@ ul {
 
 /* <nav> */
 .navbar {
+  z-index: 10;
   position: fixed;
   width: 100%;
   top: 0;
@@ -51,7 +52,7 @@ ul {
 
 /* Icon Button */
 .icon-button {
-  --button-size: calc(var(--nav-size) * 0.5);
+  --button-size: calc(var(--nav-size) * 0.4);
   width: var(--button-size);
   height: var(--button-size);
   background-color: #484a4d;
