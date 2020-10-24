@@ -1,0 +1,136 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.wave {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  z-index: -1;
+}
+
+.head {
+  text-align: center;
+}
+
+.item-input-field {
+  width: 90%;
+  height: 30px;
+  border: 1px solid green;
+  background-color: rgb(185, 241, 207);
+  padding: 20px;
+  margin: 10px;
+  border-radius: 0%;
+  display: inline-flex;
+}
+
+.i {
+  color: #757070;
+  display: flex;
+  margin-top: 10px;
+  margin-left: 10px;
+  justify-content: left;
+}
+
+input {
+  position: relative;
+  left: 30px;
+  top: 0;
+  border: none;
+  border-bottom: 3px solid rgb(129, 125, 125);
+  outline: none;
+  background: none;
+  font-size: 1.2rem;
+  color: #555;
+  font-family: "poppins", sans-serif;
+  padding-right: 20px;
+  padding-left: 0px;
+  width: 75%;
+  height: 100%;
+}
+
+.btn {
+  position: relative;
+  left: 50px;
+  top: -15px;
+  float: inline-end;
+  border-radius: 25px;
+  background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 5px;
+  padding-bottom: 0px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.btn:hover {
+  background-position: right;
+}
+
+.search-result-text {
+  display: inline-flex;
+  overflow: auto;
+  padding: 20px;
+  margin: 10px;
+  font-size: 1.2rem;
+  width: 90%;
+  max-height: 18px;
+}
+
+/* .display-table {
+    padding: 20px;
+    margin: 10px;
+    width: 90%;
+    height: 30px;
+    border: 1px solid green;
+    background-color: rgb(185, 241, 207);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10%;
+    display: inline-flex;
+  } */
+
+.display-table {
+  position: relative;
+  display: inline-flex;
+  overflow: auto;
+  border: 1px solid green;
+  background-color: rgb(185, 241, 207);
+  text-align: left;
+  padding: 20px;
+  margin: 10px;
+  width: 90%;
+  max-height: 380px;
+  float: left;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(87, 202, 231);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 100%;
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media screen and (max-height: 700px) {
+  .display-table {
+    max-height: 280px;
+  }
+}

@@ -1,25 +1,20 @@
 import "./index.css";
-import { ReactComponent as BellIcon } from "./icons/bell.svg";
-import { ReactComponent as MessengerIcon } from "./icons/messenger.svg";
 import { ReactComponent as CaretIcon } from "./icons/caret.svg";
-import { ReactComponent as PlusIcon } from "./icons/plus.svg";
 import { ReactComponent as CogIcon } from "./icons/cog.svg";
 import { ReactComponent as ChevronIcon } from "./icons/chevron.svg";
 import { ReactComponent as ArrowIcon } from "./icons/arrow.svg";
 import { ReactComponent as BoltIcon } from "./icons/bolt.svg";
+import { ReactComponent as DataBaseIcon } from "./icons/database.svg";
 
 import React, { useState, useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 
 import "./index.css";
+import { Link } from "react-router-dom";
 
 function TopTemp({ topNavHeight }) {
   return (
     <Navbar topNavHeight={topNavHeight}>
-      <NavItem icon={<PlusIcon />} />
-      <NavItem icon={<BellIcon />} />
-      <NavItem icon={<MessengerIcon />} />
-
       <NavItem icon={<CaretIcon />}>
         <DropdownMenu></DropdownMenu>
       </NavItem>
@@ -88,26 +83,25 @@ function DropdownMenu() {
         onEnter={calcHeight}
       >
         <div className="menu">
-          <DropdownItem>My Profile</DropdownItem>
           <DropdownItem
             leftIcon={<CogIcon />}
             rightIcon={<ChevronIcon />}
-            goToMenu="settings"
+            goToMenu="XssAttack"
           >
-            Settings
+            XSS
           </DropdownItem>
           <DropdownItem
-            leftIcon="🦧"
+            leftIcon={<DataBaseIcon />}
             rightIcon={<ChevronIcon />}
-            goToMenu="animals"
+            goToMenu="sql"
           >
-            Animals
+            SQL
           </DropdownItem>
         </div>
       </CSSTransition>
 
       <CSSTransition
-        in={activeMenu === "settings"}
+        in={activeMenu === "XssAttack"}
         timeout={500}
         classNames="menu-secondary"
         unmountOnExit
@@ -115,17 +109,23 @@ function DropdownMenu() {
       >
         <div className="menu">
           <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
-            <h2>My Tutorial</h2>
+            <h2>XSS</h2>
           </DropdownItem>
-          <DropdownItem leftIcon={<BoltIcon />}>HTML</DropdownItem>
-          <DropdownItem leftIcon={<BoltIcon />}>CSS</DropdownItem>
-          <DropdownItem leftIcon={<BoltIcon />}>JavaScript</DropdownItem>
-          <DropdownItem leftIcon={<BoltIcon />}>Awesome!</DropdownItem>
+          <Link to="/XssWithVulnerability" style={{ textDecoration: "none" }}>
+            <DropdownItem leftIcon={<BoltIcon />}>
+              XSS With Vulnerability
+            </DropdownItem>
+          </Link>
+          <Link to="/XssWithNoVulnerability" style={{ textDecoration: "none" }}>
+            <DropdownItem leftIcon={<BoltIcon />}>
+              XSS With No Vulnerability
+            </DropdownItem>
+          </Link>
         </div>
       </CSSTransition>
 
       <CSSTransition
-        in={activeMenu === "animals"}
+        in={activeMenu === "sql"}
         timeout={500}
         classNames="menu-secondary"
         unmountOnExit
@@ -133,12 +133,14 @@ function DropdownMenu() {
       >
         <div className="menu">
           <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
-            <h2>Animals</h2>
+            <h2>SQL</h2>
           </DropdownItem>
-          <DropdownItem leftIcon="🦘">Kangaroo</DropdownItem>
+          <Link to="/SQL-Injection" style={{ textDecoration: "none" }}>
+            <DropdownItem leftIcon={<DataBaseIcon />}>
+              SQL Injection
+            </DropdownItem>
+          </Link>
           <DropdownItem leftIcon="🐸">Frog</DropdownItem>
-          <DropdownItem leftIcon="🦋">Horse?</DropdownItem>
-          <DropdownItem leftIcon="🦔">Hedgehog</DropdownItem>
         </div>
       </CSSTransition>
     </div>

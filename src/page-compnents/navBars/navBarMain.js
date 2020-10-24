@@ -7,9 +7,9 @@ import "./topNavBar.css";
 
 import TopTemp from "./topNavBar/topTemp";
 const jsonNavItems = [
-  { id: 1, name: "Login", link: "/login", icon: "fas fa-sign-in-alt" },
-  { id: 2, name: "Signup", link: "/signup", icon: "fas fa-user-plus" },
-  { id: 3, name: "Home", link: "/", icon: "fas fa-house-user" },
+  // { id: 1, name: "Login", link: "/login", icon: "fas fa-sign-in-alt" },
+  // { id: 2, name: "Signup", link: "/signup", icon: "fas fa-user-plus" },
+  // { id: 3, name: "Home", link: "/", icon: "fas fa-house-user" },
 ];
 /*
 Props needed 
