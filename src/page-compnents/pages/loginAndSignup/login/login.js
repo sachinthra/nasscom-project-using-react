@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import cookie from "react-cookies";
+import axios from "axios";
 
 import RenderLoginPage from "./loginSupport/renderLoginPage";
-import { SendDataToServer } from "../sendDataToServer";
+import { AxiosRequestToServer } from "../../../axiosRequestToServer";
+import Auth from "../../../Auth";
 
 import "./login.css";
 import { Redirect } from "react-router-dom";
@@ -19,23 +22,42 @@ class LoginPage extends Component {
   }
 
   componentDidMount() {
-    console.log(window.outerWidth, window.innerWidth);
+    cookie.load("userToken");
+    AxiosRequestToServer({ link: "login", data: {} })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.status !== "success") {
+          Auth.signout();
+        } else {
+          Auth.authenticate();
+          this.setState({ loggedIn: true });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   handleOnSubmit = (event) => {
     event.preventDefault();
     this.setState({ loading: true });
     const data = {
-      user_name: this.state.user_name,
+      email: this.state.user_name,
       password: this.state.password,
     };
-    SendDataToServer({ link: "login", data: data })
+    console.log(data);
+
+    axios.defaults.baseURL = "http://d62a26f40663.ngrok.io/";
+    axios
+      .post("login", data)
       .then((res) => {
-        console.log("rseponse", res.data);
+        console.log("rseponse", res);
         this.setState({ loading: false });
-        if (res.data.status === true)
-          this.setState({ loggedIn: res.data.status });
-        else {
+        if (res.data.status === "success") {
+          cookie.save("userToken", res.data.access_token, { path: "/" });
+          Auth.authenticate();
+          this.setState({ loggedIn: true });
+        } else {
           console.log(res.data.error);
           this.setState({ errorMessage: res.data.error });
         }

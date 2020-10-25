@@ -8,7 +8,7 @@ export default function InputForm({ handleInputChange, handleOnSubmit }) {
           <i className="fas fa-arrow-alt-circle-right"></i>
         </div>
         <input
-          name="inputValue"
+          name="inputMessage"
           type="text"
           className="input"
           onChange={handleInputChange}

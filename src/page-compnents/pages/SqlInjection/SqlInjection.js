@@ -3,6 +3,11 @@ import React, { Component } from "react";
 import InputForm from "./additionalFiles/inputForm";
 import SearchResult from "./additionalFiles/searchResult";
 import "../comCss/boxWith3.css";
+import { AxiosRequestToServer } from "../../axiosRequestToServer";
+import Auth from "../../Auth";
+
+import jsonData from "./additionalFiles/temp.json";
+const headData = ["username", "message", "mid"];
 
 class SQLInjection extends Component {
   constructor(props) {
@@ -16,12 +21,21 @@ class SQLInjection extends Component {
   handleOnSubmit = (event) => {
     event.preventDefault();
     this.setState({ finalInputValue: this.state.inputValue });
-    console.log(this.state.finalInputValue);
+    AxiosRequestToServer({ link: "", data: {} })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.status !== "success") {
+          Auth.signout();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   handleInputChange = (event) => {
     event.preventDefault();
-    console.log(event.target.value);
+    // console.log(event.target.value);
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -43,7 +57,11 @@ class SQLInjection extends Component {
         />
 
         {this.state.finalInputValue !== "" ? (
-          <SearchResult finalInputValue={this.state.finalInputValue} />
+          <SearchResult
+            finalInputValue={this.state.finalInputValue}
+            headData={headData}
+            jsonData={jsonData}
+          />
         ) : (
           ""
         )}

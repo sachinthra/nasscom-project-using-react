@@ -1,9 +1,9 @@
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:3001/api/";
 
-export function SendDataToServer(props) {
+export function SendDataToServer(link, data) {
   async function requestServer() {
-    return await axios.post(props.link, props.data);
+    axios.defaults.baseURL = "http://584a801028de.ngrok.io/";
+    return await axios.post(link, data);
   }
   // console.log("props.link, props.data : ", props.link, props.data);
   return requestServer();

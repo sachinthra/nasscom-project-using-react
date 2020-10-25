@@ -1,10 +1,9 @@
 import "./index.css";
 import { ReactComponent as CaretIcon } from "./icons/caret.svg";
-import { ReactComponent as CogIcon } from "./icons/cog.svg";
-import { ReactComponent as ChevronIcon } from "./icons/chevron.svg";
 import { ReactComponent as ArrowIcon } from "./icons/arrow.svg";
-import { ReactComponent as BoltIcon } from "./icons/bolt.svg";
+import { ReactComponent as CommentsRegular } from "./icons/commentsRegular.svg";
 import { ReactComponent as DataBaseIcon } from "./icons/database.svg";
+import { ReactComponent as CodeSolid } from "./icons/codeSolid.svg";
 
 import React, { useState, useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
@@ -13,10 +12,11 @@ import "./index.css";
 import { Link } from "react-router-dom";
 
 function TopTemp({ topNavHeight }) {
+  const [open, setOpen] = useState(false);
   return (
     <Navbar topNavHeight={topNavHeight}>
-      <NavItem icon={<CaretIcon />}>
-        <DropdownMenu></DropdownMenu>
+      <NavItem icon={<CaretIcon />} isopen={open} setOpen={setOpen}>
+        <DropdownMenu isopen={open} setOpen={setOpen}></DropdownMenu>
       </NavItem>
     </Navbar>
   );
@@ -33,20 +33,18 @@ function Navbar(props) {
 }
 
 function NavItem(props) {
-  const [open, setOpen] = useState(false);
-
   return (
     <li className="nav-item">
-      <div className="icon-button" onClick={() => setOpen(!open)}>
+      <div className="icon-button" onClick={() => props.setOpen(!props.isopen)}>
         {props.icon}
       </div>
 
-      {open && props.children}
+      {props.isopen && props.children}
     </li>
   );
 }
 
-function DropdownMenu() {
+function DropdownMenu(props) {
   const [activeMenu, setActiveMenu] = useState("main");
   const [menuHeight, setMenuHeight] = useState(null);
   const dropdownRef = useRef(null);
@@ -68,7 +66,6 @@ function DropdownMenu() {
       >
         <span className="icon-button">{props.leftIcon}</span>
         {props.children}
-        <span className="icon-right">{props.rightIcon}</span>
       </div>
     );
   }
@@ -83,19 +80,14 @@ function DropdownMenu() {
         onEnter={calcHeight}
       >
         <div className="menu">
-          <DropdownItem
-            leftIcon={<CogIcon />}
-            rightIcon={<ChevronIcon />}
-            goToMenu="XssAttack"
-          >
+          <DropdownItem leftIcon={<CodeSolid />} goToMenu="XssAttack">
             XSS
           </DropdownItem>
-          <DropdownItem
-            leftIcon={<DataBaseIcon />}
-            rightIcon={<ChevronIcon />}
-            goToMenu="sql"
-          >
+          <DropdownItem leftIcon={<DataBaseIcon />} goToMenu="sql">
             SQL
+          </DropdownItem>
+          <DropdownItem leftIcon={<CommentsRegular />} goToMenu="product">
+            Product
           </DropdownItem>
         </div>
       </CSSTransition>
@@ -111,13 +103,21 @@ function DropdownMenu() {
           <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
             <h2>XSS</h2>
           </DropdownItem>
-          <Link to="/XssWithVulnerability" style={{ textDecoration: "none" }}>
-            <DropdownItem leftIcon={<BoltIcon />}>
+          <Link
+            to="/XssWithVulnerability"
+            onClick={() => props.setOpen(!props.isopen)}
+            style={{ textDecoration: "none" }}
+          >
+            <DropdownItem leftIcon={<CodeSolid />}>
               XSS With Vulnerability
             </DropdownItem>
           </Link>
-          <Link to="/XssWithNoVulnerability" style={{ textDecoration: "none" }}>
-            <DropdownItem leftIcon={<BoltIcon />}>
+          <Link
+            to="/XssWithNoVulnerability"
+            onClick={() => props.setOpen(!props.isopen)}
+            style={{ textDecoration: "none" }}
+          >
+            <DropdownItem leftIcon={<CodeSolid />}>
               XSS With No Vulnerability
             </DropdownItem>
           </Link>
@@ -135,12 +135,37 @@ function DropdownMenu() {
           <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
             <h2>SQL</h2>
           </DropdownItem>
-          <Link to="/SQL-Injection" style={{ textDecoration: "none" }}>
+          <Link
+            to="/SQL-Injection"
+            onClick={() => props.setOpen(!props.isopen)}
+            style={{ textDecoration: "none" }}
+          >
             <DropdownItem leftIcon={<DataBaseIcon />}>
               SQL Injection
             </DropdownItem>
           </Link>
-          <DropdownItem leftIcon="🐸">Frog</DropdownItem>
+        </div>
+      </CSSTransition>
+      <CSSTransition
+        in={activeMenu === "product"}
+        timeout={500}
+        classNames="menu-secondary"
+        unmountOnExit
+        onEnter={calcHeight}
+      >
+        <div className="menu">
+          <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
+            <h2>Product</h2>
+          </DropdownItem>
+          <Link
+            to="/homepage"
+            onClick={() => props.setOpen(!props.isopen)}
+            style={{ textDecoration: "none" }}
+          >
+            <DropdownItem leftIcon={<CommentsRegular />}>
+              Product Informations
+            </DropdownItem>
+          </Link>
         </div>
       </CSSTransition>
     </div>
