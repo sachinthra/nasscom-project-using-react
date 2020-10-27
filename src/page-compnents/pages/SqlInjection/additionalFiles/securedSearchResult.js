@@ -1,7 +1,11 @@
 import React from "react";
 import InnerHTML from "dangerously-set-html-content";
 
-export default function SearchResult({ finalInputValue, headData, jsonData }) {
+export default function SecuredSearchResult({
+  finalInputValue,
+  headData,
+  jsonData,
+}) {
   return (
     <React.Fragment>
       <div className="search-result-text">
@@ -25,11 +29,7 @@ export default function SearchResult({ finalInputValue, headData, jsonData }) {
               return (
                 <tr key={rowData[headData[1]]}>
                   {headData.map((headName) => {
-                    return (
-                      <td key={rowData[headName]}>
-                        <InnerHTML html={rowData[headName]} />
-                      </td>
-                    );
+                    return <td key={rowData[headName]}>{rowData[headName]}</td>;
                   })}
                 </tr>
               );

@@ -8,6 +8,7 @@ import XssWithNoVulnerability from "./pages/xssPages/xssWithNoVulnerability";
 
 import ProductPost from "./pages/homePage/productPost";
 import SQLInjection from "./pages/SqlInjection/SqlInjection";
+import ProductTableDisplay from "./pages/SqlInjection/ProductTableDisplay";
 import LoginPage from "./pages/loginAndSignup/login/login";
 import Template from "./pages/template/template";
 
@@ -51,6 +52,11 @@ class Router extends Component {
           component={() => (
             <XssWithNoVulnerability baseURL={this.state.baseURL} />
           )}
+        />
+        <RouterWithNav
+          exact
+          path="/secured-Product-table-display"
+          component={() => <ProductTableDisplay baseURL={this.state.baseURL} />}
         />
         <Route component={() => <Template baseURL={this.state.baseURL} />} />
       </Switch>

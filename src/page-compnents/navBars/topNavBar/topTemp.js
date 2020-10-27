@@ -144,6 +144,16 @@ function DropdownMenu(props) {
               SQL Injection
             </DropdownItem>
           </Link>
+          {/* secured-Product-table-display */}
+          <Link
+            to="/secured-Product-table-display"
+            onClick={() => props.setOpen(!props.isopen)}
+            style={{ textDecoration: "none" }}
+          >
+            <DropdownItem leftIcon={<DataBaseIcon />}>
+              Secured Display
+            </DropdownItem>
+          </Link>
         </div>
       </CSSTransition>
       <CSSTransition
