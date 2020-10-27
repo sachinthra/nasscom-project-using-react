@@ -1,4 +1,5 @@
 import React from "react";
+import InnerHTML from "dangerously-set-html-content";
 
 export default function SearchResult({ finalInputValue, headData, jsonData }) {
   return (
@@ -22,7 +23,11 @@ export default function SearchResult({ finalInputValue, headData, jsonData }) {
               return (
                 <tr key={rowData[headData[1]]}>
                   {headData.map((headName) => {
-                    return <td key={rowData[headName]}>{rowData[headName]}</td>;
+                    return (
+                      <td key={rowData[headName]}>
+                        <InnerHTML html={rowData[headName]} />
+                      </td>
+                    );
                   })}
                 </tr>
               );

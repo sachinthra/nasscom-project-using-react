@@ -74,7 +74,7 @@ tbody tr:hover {
   position: relative;
   left: -1%;
   border: none;
-  border-bottom: 3px solid rgb(194, 132, 132);
+  border-bottom: 3px solid rgb(165, 165, 165);
   outline: none;
   background: none;
   font-size: 1.2rem;

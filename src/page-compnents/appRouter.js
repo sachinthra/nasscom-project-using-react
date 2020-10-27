@@ -14,7 +14,7 @@ import Template from "./pages/template/template";
 import RouterWithNav from "./routerWithNav";
 
 class Router extends Component {
-  state = { baseURL: "http://d4840f49684c.ngrok.io/" };
+  state = { baseURL: "https://cf12aaa589df.ngrok.io" };
   render() {
     return (
       <Switch>

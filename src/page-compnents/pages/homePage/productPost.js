@@ -3,8 +3,8 @@ import axios from "axios";
 import Auth from "../../Auth";
 
 import InputForm from "./additionalFiles/inputForm";
-import SearchResult from "./additionalFiles/searchResult";
-import { ReactComponent as SyncAltSolid } from "./additionalFiles/icons/syncAltSolid.svg";
+// import SearchResult from "./additionalFiles/searchResult";
+// import { ReactComponent as SyncAltSolid } from "./additionalFiles/icons/syncAltSolid.svg";
 import "../comCss/boxWith3.css";
 import "../comCss/productPost.css";
 
@@ -14,9 +14,7 @@ class ProductPost extends Component {
     this.state = {
       productName: "",
       inputMessage: "",
-      finalInputMessage: "",
       allMessageData: "",
-      // headData: "",
       headData: "",
       jsonData: [],
     };
@@ -24,16 +22,15 @@ class ProductPost extends Component {
 
   handleOnSubmit = (event) => {
     event.preventDefault();
-    // this.setState({ finalInputMessage: this.state.inputMessage });
-    axios.defaults.baseURL = "http://584a801028de.ngrok.io/";
+    axios.defaults.baseURL = this.props.baseURL;
     axios
       .post("add/product", {
         prod_name: this.state.productName,
-        prod_msg: this.state.inputMessage,
+        prod_description: this.state.inputMessage,
       })
       .then((res) => {
         console.log(res.data);
-        console.log(this.state.inputMessage);
+        alert("done");
       })
       .catch((err) => {
         console.log(err);
@@ -91,17 +88,17 @@ class ProductPost extends Component {
             Send
           </div>
 
-          <div className="refresh-button" onClick={this.handleRefreshButton}>
+          {/* <div className="refresh-button" onClick={this.handleRefreshButton}>
             <SyncAltSolid />
-          </div>
+          </div> */}
         </div>
 
-        {this.state.headData !== "" && (
+        {/* {this.state.headData !== "" && (
           <SearchResult
             headData={this.state.headData}
             jsonData={this.state.jsonData}
           />
-        )}
+        )} */}
       </React.Fragment>
     );
   }
