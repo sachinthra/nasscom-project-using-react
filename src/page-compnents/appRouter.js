@@ -14,25 +14,45 @@ import Template from "./pages/template/template";
 import RouterWithNav from "./routerWithNav";
 
 class Router extends Component {
-  state = {};
+  state = { baseURL: "http://d4840f49684c.ngrok.io/" };
   render() {
     return (
       <Switch>
-        <Route exact path="/" component={LoginPage} />
-        <RouterWithNav exact path="/dashboard" component={DashBoard} />
-        <RouterWithNav exact path="/SQL-Injection" component={SQLInjection} />
-        <RouterWithNav exact path="/homepage" component={ProductPost} />
+        <Route
+          exact
+          path="/"
+          component={() => <LoginPage baseURL={this.state.baseURL} />}
+        />
+        <RouterWithNav
+          exact
+          path="/dashboard"
+          component={() => <DashBoard baseURL={this.state.baseURL} />}
+        />
+        <RouterWithNav
+          exact
+          path="/SQL-Injection"
+          component={() => <SQLInjection baseURL={this.state.baseURL} />}
+        />
+        <RouterWithNav
+          exact
+          path="/homepage"
+          component={() => <ProductPost baseURL={this.state.baseURL} />}
+        />
         <RouterWithNav
           exact
           path="/XssWithVulnerability"
-          component={XssWithVulnerability}
+          component={() => (
+            <XssWithVulnerability baseURL={this.state.baseURL} />
+          )}
         />
         <RouterWithNav
           exact
           path="/XssWithNoVulnerability"
-          component={XssWithNoVulnerability}
+          component={() => (
+            <XssWithNoVulnerability baseURL={this.state.baseURL} />
+          )}
         />
-        <Route component={Template} />
+        <Route component={() => <Template baseURL={this.state.baseURL} />} />
       </Switch>
     );
   }

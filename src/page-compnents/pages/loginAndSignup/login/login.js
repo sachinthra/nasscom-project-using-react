@@ -3,7 +3,6 @@ import cookie from "react-cookies";
 import axios from "axios";
 
 import RenderLoginPage from "./loginSupport/renderLoginPage";
-import { AxiosRequestToServer } from "../../../axiosRequestToServer";
 import Auth from "../../../Auth";
 
 import "./login.css";
@@ -22,20 +21,8 @@ class LoginPage extends Component {
   }
 
   componentDidMount() {
-    cookie.load("userToken");
-    AxiosRequestToServer({ link: "login", data: {} })
-      .then((res) => {
-        console.log(res.data);
-        if (res.data.status !== "success") {
-          Auth.signout();
-        } else {
-          Auth.authenticate();
-          this.setState({ loggedIn: true });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log(cookie.load("userToken"));
+    console.log(this.props.baseURL);
   }
 
   handleOnSubmit = (event) => {
@@ -47,7 +34,7 @@ class LoginPage extends Component {
     };
     console.log(data);
 
-    axios.defaults.baseURL = "http://d62a26f40663.ngrok.io/";
+    axios.defaults.baseURL = this.props.baseURL;
     axios
       .post("login", data)
       .then((res) => {
@@ -55,6 +42,7 @@ class LoginPage extends Component {
         this.setState({ loading: false });
         if (res.data.status === "success") {
           cookie.save("userToken", res.data.access_token, { path: "/" });
+          cookie.save("userName", this.state.user_name, { path: "/" });
           Auth.authenticate();
           this.setState({ loggedIn: true });
         } else {

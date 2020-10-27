@@ -1,11 +1,15 @@
 import React from "react";
 import "../../comCss/box2.css";
+import InnerHTML from "dangerously-set-html-content";
 
-export default function SearchResult({ headData, jsonData }) {
+export default function SearchResult({
+  headData,
+  jsonData,
+  handleRefreshButton,
+}) {
   return (
     <React.Fragment>
-      {/* <div className="search-result-text">hi</div> */}
-      <div className="output">
+      <div className="display-table">
         <table className="product-table">
           <thead>
             <tr>
@@ -21,11 +25,12 @@ export default function SearchResult({ headData, jsonData }) {
                   {headData.map((headName) => {
                     return (
                       <td key={rowData[headData[1]] + headName}>
-                        <span
+                        {/* <span
                           dangerouslySetInnerHTML={{
                             __html: rowData[headName],
                           }}
-                        />
+                        /> */}
+                        <InnerHTML html={rowData[headName]} />
                       </td>
                     );
                   })}

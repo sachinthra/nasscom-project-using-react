@@ -1,13 +1,10 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 import InputForm from "./additionalFiles/inputForm";
 import SearchResult from "./additionalFiles/searchResult";
 import "../comCss/boxWith3.css";
-import { AxiosRequestToServer } from "../../axiosRequestToServer";
 import Auth from "../../Auth";
-
-import jsonData from "./additionalFiles/temp.json";
-const headData = ["username", "message", "mid"];
 
 class SQLInjection extends Component {
   constructor(props) {
@@ -15,17 +12,29 @@ class SQLInjection extends Component {
     this.state = {
       inputValue: "",
       finalInputValue: "",
+      headData: "",
+      jsonData: [],
     };
+  }
+
+  componentDidMount() {
+    console.log(this.props.baseURL);
   }
 
   handleOnSubmit = (event) => {
     event.preventDefault();
-    this.setState({ finalInputValue: this.state.inputValue });
-    AxiosRequestToServer({ link: "", data: {} })
+
+    axios.defaults.baseURL = this.props.baseURL;
+    axios
+      .post("products", { prod_name: this.state.inputValue })
       .then((res) => {
         console.log(res.data);
-        if (res.data.status !== "success") {
+        if (res.data.status !== "Success") {
           Auth.signout();
+        } else {
+          this.setState({ headData: res.data.meta });
+          this.setState({ jsonData: res.data.data });
+          this.setState({ finalInputValue: this.state.inputValue });
         }
       })
       .catch((err) => {
@@ -56,11 +65,11 @@ class SQLInjection extends Component {
           handleOnSubmit={this.handleOnSubmit}
         />
 
-        {this.state.finalInputValue !== "" ? (
+        {this.state.headData !== "" ? (
           <SearchResult
             finalInputValue={this.state.finalInputValue}
-            headData={headData}
-            jsonData={jsonData}
+            headData={this.state.headData}
+            jsonData={this.state.jsonData}
           />
         ) : (
           ""
