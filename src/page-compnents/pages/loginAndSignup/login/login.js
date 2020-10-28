@@ -36,9 +36,8 @@ class LoginPage extends Component {
 
     axios.defaults.baseURL = this.props.baseURL;
     axios
-      .post("login", data)
+      .post("unsafe/login", data)
       .then((res) => {
-        console.log("rseponse", res);
         this.setState({ loading: false });
         if (res.data.status === "success") {
           cookie.save("userToken", res.data.access_token, { path: "/" });

@@ -8,6 +8,7 @@ import XssWithNoVulnerability from "./pages/xssPages/xssWithNoVulnerability";
 
 import ProductPost from "./pages/homePage/productPost";
 import SQLInjection from "./pages/SqlInjection/SqlInjection";
+import NoSQLInjection from "./pages/SqlInjection/NoSqlInjection";
 import ProductTableDisplay from "./pages/SqlInjection/ProductTableDisplay";
 import LoginPage from "./pages/loginAndSignup/login/login";
 import Template from "./pages/template/template";
@@ -15,7 +16,7 @@ import Template from "./pages/template/template";
 import RouterWithNav from "./routerWithNav";
 
 class Router extends Component {
-  state = { baseURL: "https://cf12aaa589df.ngrok.io" };
+  state = { baseURL: "http://b03e7da41275.ngrok.io/" };
   render() {
     return (
       <Switch>
@@ -57,6 +58,11 @@ class Router extends Component {
           exact
           path="/secured-Product-table-display"
           component={() => <ProductTableDisplay baseURL={this.state.baseURL} />}
+        />
+        <RouterWithNav
+          exact
+          path="/NoSQLInjection"
+          component={() => <NoSQLInjection baseURL={this.state.baseURL} />}
         />
         <Route component={() => <Template baseURL={this.state.baseURL} />} />
       </Switch>

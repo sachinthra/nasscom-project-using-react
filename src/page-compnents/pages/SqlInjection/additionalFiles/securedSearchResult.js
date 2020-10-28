@@ -1,5 +1,4 @@
 import React from "react";
-import InnerHTML from "dangerously-set-html-content";
 
 export default function SecuredSearchResult({
   finalInputValue,

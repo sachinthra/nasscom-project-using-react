@@ -12,7 +12,7 @@ export default function RenderLoginPage({
     <React.Fragment>
       <img
         className="login-wave login-img"
-        src={require("../img/wave.png")}
+        src={require("../../../resourses/img-files/wave.png")}
         alt="nice"
         aria-hidden="true"
       />

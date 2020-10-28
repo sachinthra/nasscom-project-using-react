@@ -4,7 +4,8 @@ import { ReactComponent as ArrowIcon } from "./icons/arrow.svg";
 import { ReactComponent as CommentsRegular } from "./icons/commentsRegular.svg";
 import { ReactComponent as DataBaseIcon } from "./icons/database.svg";
 import { ReactComponent as CodeSolid } from "./icons/codeSolid.svg";
-
+import { ReactComponent as CogSet } from "./icons/cog.svg";
+import { ReactComponent as AddIcon } from "./icons/plus.svg";
 import React, { useState, useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 
@@ -89,6 +90,9 @@ function DropdownMenu(props) {
           <DropdownItem leftIcon={<CommentsRegular />} goToMenu="product">
             Product
           </DropdownItem>
+          <DropdownItem leftIcon={<CogSet />} goToMenu="setting">
+            Settings
+          </DropdownItem>
         </div>
       </CSSTransition>
 
@@ -172,9 +176,36 @@ function DropdownMenu(props) {
             onClick={() => props.setOpen(!props.isopen)}
             style={{ textDecoration: "none" }}
           >
-            <DropdownItem leftIcon={<CommentsRegular />}>
+            <DropdownItem leftIcon={<AddIcon />}>
               Product Informations
             </DropdownItem>
+          </Link>
+        </div>
+      </CSSTransition>
+      <CSSTransition
+        in={activeMenu === "setting"}
+        timeout={500}
+        classNames="menu-secondary"
+        unmountOnExit
+        onEnter={calcHeight}
+      >
+        <div className="menu">
+          <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
+            <h2>Settings</h2>
+          </DropdownItem>
+          <Link
+            to="/dashboard"
+            onClick={() => props.setOpen(!props.isopen)}
+            style={{ textDecoration: "none" }}
+          >
+            <DropdownItem leftIcon={<CogSet />}>DashBoard</DropdownItem>
+          </Link>
+          <Link
+            to="/"
+            onClick={() => props.setOpen(!props.isopen)}
+            style={{ textDecoration: "none" }}
+          >
+            <DropdownItem leftIcon={<CogSet />}>Logout</DropdownItem>
           </Link>
         </div>
       </CSSTransition>

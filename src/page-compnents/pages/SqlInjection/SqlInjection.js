@@ -59,7 +59,7 @@ class SQLInjection extends Component {
           alt="nice"
           aria-hidden="true"
         />
-        <h1 className="head">SQL Injection</h1>
+        <h1 className="head">Vulnerable to Both XSS and SQL Injection</h1>
         <InputForm
           handleInputChange={this.handleInputChange}
           handleOnSubmit={this.handleOnSubmit}

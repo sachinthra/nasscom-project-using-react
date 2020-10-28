@@ -24,6 +24,7 @@ export default function InputField({
       <div className={"login-input-div " + divType + " " + inputDiv}>
         <div className="i">
           <i className={iconType}></i>
+          {/* {iconType} */}
         </div>
         <div className="div">
           <h5>{headName}</h5>

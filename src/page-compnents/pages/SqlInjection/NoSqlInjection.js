@@ -6,7 +6,7 @@ import SecuredSearchResult from "./additionalFiles/securedSearchResult";
 import "../comCss/boxWith3.css";
 import Auth from "../../Auth";
 
-class ProductTableDisplay extends Component {
+class NoSQLInjection extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -59,7 +59,7 @@ class ProductTableDisplay extends Component {
           alt="nice"
           aria-hidden="true"
         />
-        <h1 className="head">Vulnerable to SQL Injection But Not XSS Not</h1>
+        <h1 className="head">Secured From XSS and SQL Injection</h1>
         <InputForm
           handleInputChange={this.handleInputChange}
           handleOnSubmit={this.handleOnSubmit}
@@ -79,4 +79,4 @@ class ProductTableDisplay extends Component {
   }
 }
 
-export default ProductTableDisplay;
+export default NoSQLInjection;

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import "./dashboard.css";
 import { Link } from "react-router-dom";
+import cookie from "react-cookies";
 
 export default function DashBoard({ baseURL }) {
   // {} props
@@ -14,7 +15,8 @@ export default function DashBoard({ baseURL }) {
         aria-hidden="true"
       />
       <h1 style={{ textAlign: "center", padding: "10px" }}>
-        DashBoard - {baseURL}
+        DashBoard - <span style={{ fontSize: "1.3rem" }}> User Name: </span>
+        <span style={{ fontSize: "1.1rem" }}> {cookie.load("userName")}</span>
       </h1>
       <div className="dashboard-main">
         <div className="dashboard-dashboard">
@@ -39,34 +41,42 @@ export default function DashBoard({ baseURL }) {
               </Link>
             </section>
             <section>
+              <Link to="/homepage" className="dashboard-link">
+                <div className="dashboard-small dashboard-item">
+                  <h1 className="dashboard-h1">ADD Product</h1>
+                  <p className="dashboard-box-content">
+                    This Page is for Adding Product Items in to DataBase.
+                  </p>
+                </div>
+              </Link>
               <Link to="/SQL-Injection" className="dashboard-link">
                 <div className="dashboard-small dashboard-item">
                   <h1 className="dashboard-h1">Products Display</h1>
                   <p className="dashboard-box-content">
-                    This Page is Vulnerable. It will render the Item Without
-                    Stringifying it.
-                  </p>
-                </div>
-              </Link>
-              <Link
-                to="/secured-Product-table-display"
-                className="dashboard-link"
-              >
-                <div className="dashboard-small dashboard-item">
-                  <h1 className="dashboard-h1">Product Display</h1>
-                  <p className="dashboard-box-content">
-                    This Page Prevents those XSS attack which is done through
-                    SQL
+                    This Page is Vulnerable to Both XSS and SQL Injection.
+                    Displays Product table.
                   </p>
                 </div>
               </Link>
             </section>
             <section>
-              <Link to="/homepage" className="dashboard-link">
+              <Link
+                to="/secured-Product-table-display"
+                className="dashboard-link"
+              >
                 <div className="dashboard-small dashboard-item">
-                  <h1 className="dashboard-h1">ADD Product</h1>
+                  <h1 className="dashboard-h1">SQL Injection</h1>
                   <p className="dashboard-box-content">
-                    This Page is for Adding Items in to DataBase
+                    This Page is Vulnerable to SQL Injection But not Vulnerable
+                    to XSS. Displays Product table.
+                  </p>
+                </div>
+              </Link>
+              <Link to="/NoSQLInjection" className="dashboard-link">
+                <div className="dashboard-small dashboard-item">
+                  <h1 className="dashboard-h1">Block SQL Injection</h1>
+                  <p className="dashboard-box-content">
+                    This Page is not Vulnerable to both SQL Injection And XSS.
                   </p>
                 </div>
               </Link>
