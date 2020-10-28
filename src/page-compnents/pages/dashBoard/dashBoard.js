@@ -13,7 +13,9 @@ export default function DashBoard({ baseURL }) {
         alt="nice"
         aria-hidden="true"
       />
-      <h1 style={{ textAlign: "center" }}>DashBoard - {baseURL}</h1>
+      <h1 style={{ textAlign: "center", padding: "10px" }}>
+        DashBoard - {baseURL}
+      </h1>
       <div className="dashboard-main">
         <div className="dashboard-dashboard">
           <div className="dashboard-br">
