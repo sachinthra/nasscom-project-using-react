@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./dashboard.css";
 import { Link } from "react-router-dom";
 import cookie from "react-cookies";
@@ -91,6 +91,17 @@ export default function DashBoard({ baseURL }) {
                   18BIT0020 - Sachinthra
                   <br />
                   18BIT0026 - Rahul
+                  <br />
+                  <br />
+                  SQLI
+                  <br />
+                  XSS
+                  <br />
+                  Broken Auth
+                  <br />
+                  Cookie poisoning
+                  <br />
+                  Phishing
                 </p>
               </div>
             </div>

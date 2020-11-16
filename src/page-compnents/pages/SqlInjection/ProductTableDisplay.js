@@ -59,7 +59,7 @@ class ProductTableDisplay extends Component {
           alt="nice"
           aria-hidden="true"
         />
-        <h1 className="head">Vulnerable to SQL Injection But Not XSS Not</h1>
+        <h1 className="head">Vulnerable to SQL Injection But Not for XSS</h1>
         <InputForm
           handleInputChange={this.handleInputChange}
           handleOnSubmit={this.handleOnSubmit}

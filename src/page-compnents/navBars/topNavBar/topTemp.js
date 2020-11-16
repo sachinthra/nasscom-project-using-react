@@ -85,7 +85,7 @@ function DropdownMenu(props) {
             XSS
           </DropdownItem>
           <DropdownItem leftIcon={<DataBaseIcon />} goToMenu="sql">
-            SQL
+            Product Display
           </DropdownItem>
           <DropdownItem leftIcon={<CommentsRegular />} goToMenu="product">
             Product
@@ -137,20 +137,30 @@ function DropdownMenu(props) {
       >
         <div className="menu">
           <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
-            <h2>SQL</h2>
+            <h2>Product Display</h2>
           </DropdownItem>
+
           <Link
             to="/SQL-Injection"
             onClick={() => props.setOpen(!props.isopen)}
             style={{ textDecoration: "none" }}
           >
             <DropdownItem leftIcon={<DataBaseIcon />}>
-              SQL Injection
+              Product Display
             </DropdownItem>
           </Link>
           {/* secured-Product-table-display */}
           <Link
             to="/secured-Product-table-display"
+            onClick={() => props.setOpen(!props.isopen)}
+            style={{ textDecoration: "none" }}
+          >
+            <DropdownItem leftIcon={<DataBaseIcon />}>
+              Secured XSS Display
+            </DropdownItem>
+          </Link>
+          <Link
+            to="/NoSQLInjection"
             onClick={() => props.setOpen(!props.isopen)}
             style={{ textDecoration: "none" }}
           >

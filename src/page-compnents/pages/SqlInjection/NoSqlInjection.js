@@ -26,7 +26,7 @@ class NoSQLInjection extends Component {
 
     axios.defaults.baseURL = this.props.baseURL;
     axios
-      .post("products", { prod_name: this.state.inputValue })
+      .post("orm/products", { prod_name: this.state.inputValue })
       .then((res) => {
         console.log(res.data);
         if (res.data.status !== "Success") {
@@ -59,7 +59,9 @@ class NoSQLInjection extends Component {
           alt="nice"
           aria-hidden="true"
         />
-        <h1 className="head">Secured From XSS and SQL Injection</h1>
+        <h1 className="head">
+          Product Display - Secured From XSS and SQL Injection
+        </h1>
         <InputForm
           handleInputChange={this.handleInputChange}
           handleOnSubmit={this.handleOnSubmit}
